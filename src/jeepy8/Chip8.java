@@ -48,7 +48,7 @@ public final class Chip8 {
 	}
 	
 	/**
-	 * Charge un fichier binaire dans la mémoire
+	 * Charge un fichier binaire dans la mï¿½moire
 	 * @param romFile
 	 */
 	public void loadRom(File romFile) {

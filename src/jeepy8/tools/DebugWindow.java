@@ -1,28 +1,20 @@
 package jeepy8.tools;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.GridBagLayout;
-import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 
 import jeepy8.Chip8;
 import jeepy8.utils.TypeConverter;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.List;
-import java.awt.ScrollPane;
-import javax.swing.JScrollBar;
-import java.awt.Font;
 
 public class DebugWindow extends JFrame {
 
@@ -38,7 +30,6 @@ public class DebugWindow extends JFrame {
 		setTitle("Memory Dumper");
 		this.chip8 = chip8;
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 560, 419);
 		
 		JMenuBar menuBar = new JMenuBar();

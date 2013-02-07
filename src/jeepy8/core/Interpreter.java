@@ -1,7 +1,5 @@
 package jeepy8.core;
 
-import java.util.Random;
-
 import jeepy8.Chip8;
 
 public class Interpreter {

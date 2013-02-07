@@ -1,7 +1,5 @@
 package jeepy8.core;
 
-import com.sun.org.apache.xml.internal.serializer.utils.Utils;
-
 import jeepy8.utils.TypeConverter;
 
 /**

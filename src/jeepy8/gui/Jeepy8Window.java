@@ -7,8 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -19,10 +17,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileFilter;
+
 import jeepy8.Chip8;
 import jeepy8.core.Cpu;
 import jeepy8.core.Input;
-import jeepy8.core.Memory;
 import jeepy8.core.Pixel;
 import jeepy8.tools.DebugWindow;
 
@@ -76,35 +74,35 @@ public class Jeepy8Window extends JFrame implements ActionListener, KeyListener,
 	
 	private void initializeMenu() {
 		this.menuBar = new JMenuBar();
-		this.fileMenu = new JMenu("Fichier");
+		this.fileMenu = new JMenu("File");
 		this.emulatorMenu = new JMenu("Emulation");
-		this.configMenu = new JMenu("Configuration");
-		this.toolsMenu = new JMenu("Outils");
-		this.helpMenu = new JMenu("Aide");
+		this.configMenu = new JMenu("Settings");
+		this.toolsMenu = new JMenu("Debug");
+		this.helpMenu = new JMenu("Help");
 		
-		this.itemMenuOpen = new JMenuItem("Ouvrir");
+		this.itemMenuOpen = new JMenuItem("Open");
 		this.itemMenuOpen.addActionListener(this);
-		this.itemMenuClose = new JMenuItem("Fermer");
+		this.itemMenuClose = new JMenuItem("Close");
 		this.itemMenuClose.addActionListener(this);
-		this.itemMenuQuit = new JMenuItem("Quitter");
+		this.itemMenuQuit = new JMenuItem("Quit");
 		this.itemMenuQuit.addActionListener(this);
 		
-		this.itemMenuStart = new JMenuItem("Démarrer");
+		this.itemMenuStart = new JMenuItem("Start");
 		this.itemMenuStart.addActionListener(this);
-		this.itemMenuStop = new JMenuItem("Stopper");
+		this.itemMenuStop = new JMenuItem("Stop");
 		this.itemMenuStop.addActionListener(this);
-		this.itemMenuReset = new JMenuItem("Redémarrer");
+		this.itemMenuReset = new JMenuItem("Restart");
 		this.itemMenuReset.addActionListener(this);
 		
 		this.itemMenuSound = new JMenuItem("Audio");
-		this.itemMenuInput = new JMenuItem("Controle");
-		this.itemMenuGraphics = new JMenuItem("Graphismes");
-		this.itemMenuCpu = new JMenuItem("Processeur");
-		this.itemMenuDebug = new JMenuItem("Debugger");
+		this.itemMenuInput = new JMenuItem("Controls");
+		this.itemMenuGraphics = new JMenuItem("Graphics");
+		this.itemMenuCpu = new JMenuItem("CPU");
+		this.itemMenuDebug = new JMenuItem("Debuger");
 		this.itemMenuDebug.addActionListener(this);
-		this.itemMenuDisasembler = new JMenuItem("Désassembleur");
-		this.itemMenuHelp = new JMenuItem("Aide");
-		this.itemMenuAbout = new JMenuItem("A propos");
+		this.itemMenuDisasembler = new JMenuItem("Disasambler");
+		this.itemMenuHelp = new JMenuItem("Help");
+		this.itemMenuAbout = new JMenuItem("About");
 		this.itemMenuAbout.addActionListener(this);
 		
 		this.fileMenu.add(itemMenuOpen);
@@ -150,17 +148,17 @@ public class Jeepy8Window extends JFrame implements ActionListener, KeyListener,
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == itemMenuOpen) {
 			JFileChooser openRom = new JFileChooser();
-			openRom.addChoosableFileFilter(new Ch8RomFileFilter(".c8k", "Fichier rom Chip-8"));
-			openRom.addChoosableFileFilter(new Ch8RomFileFilter(".ch8", "Fichier rom Chip-8"));
-			openRom.setDialogTitle("Ouvrir un fichier rom");
+			openRom.addChoosableFileFilter(new Ch8RomFileFilter(".c8k", "Chip-8 rom file"));
+			openRom.addChoosableFileFilter(new Ch8RomFileFilter(".ch8", "Chip-8 rom file"));
+			openRom.setDialogTitle("Open a rom file");
 			openRom.setMultiSelectionEnabled(false);
 			
 			File rom = null;
 			if (openRom.showOpenDialog(this) ==  JFileChooser.APPROVE_OPTION) {
 				rom = openRom.getSelectedFile();
-				statusBar.setStatus("Rom " + rom.getName() + " charg�e");
+				statusBar.setStatus("Rom " + rom.getName() + " loaded");
 				chip8.resetEmulator(true);
-				// On charge la rom dans la m�moire
+				
 				chip8.loadRom(rom);
 			}
 			
@@ -199,7 +197,7 @@ public class Jeepy8Window extends JFrame implements ActionListener, KeyListener,
 		}
 		
 		else if (e.getSource() == itemMenuAbout) {
-			JOptionPane.showMessageDialog(this, "Jeepy-8 (jeepy height) est un émulateur Chip-8 écrit à titre expérimental.", "A propos de Jeepy-8", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Jeepy-8 (jeepy height) is an experimental Chip8 interpreter.", "About Jeepy-8", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else if (e.getSource() == itemMenuDebug) {
 			DebugWindow debug = new DebugWindow(chip8);

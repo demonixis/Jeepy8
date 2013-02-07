@@ -25,5 +25,4 @@ public class Jeepy8Main {
 			}
 		});
 	}
-
 }
